@@ -73,18 +73,18 @@ WSGI_APPLICATION = 'openDataChallange2020Imperium.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
-    'default': dj_database_url.config(
-        default="postgres://pharmacy_cloud:pharmacy_cloud@db:5432/pharmacy_cloud",
-        engine='django_tenants.postgresql_backend', conn_max_age=600
-    ),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default="postgres://pharmacy_cloud:pharmacy_cloud@db:5432/pharmacy_cloud",
+#         engine='django_tenants.postgresql_backend', conn_max_age=600
+#     ),
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
