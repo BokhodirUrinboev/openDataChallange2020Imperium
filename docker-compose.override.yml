@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  db:
+    environment:
+      - POSTGRES_USER=open_data
+      - POSTGRES_DB=open_data
+      - POSTGRES_PASSWORD=open_data
+    volumes:
+      - open_data_db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  redis:
+    ports:
+      - 6379:6379
+    volumes:
+      - open_data_redis:/data
+
+  nginx:
+    volumes:
+      - ./docker/nginx/letsencrypt/fullchain.pem:/etc/letsencrypt/live/${PRODUCTION_HOST}/fullchain.pem
+      - ./docker/nginx/letsencrypt/privkey.pem:/etc/letsencrypt/live/${PRODUCTION_HOST}/privkey.pem
+      - ./media:/app/media:ro
+      - ./static:/app/static:ro
+
+  app:
+    volumes:
+      - .:/app
+      - ./media:/app/media
+      - ./static:/app/static
+    command: ./manage.py runserver 0.0.0.0:8000
+
+volumes:
+  open_data_db:
+  open_data_redis:
