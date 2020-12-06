@@ -18684,6 +18684,7 @@ code {
 
 /* Footer */
 .footer {
+  text-align: center;
   background: #f3f3f3;
   padding: 30px 1rem;
   transition: all 0.25s ease;

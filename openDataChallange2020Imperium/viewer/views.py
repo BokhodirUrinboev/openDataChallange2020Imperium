@@ -41,8 +41,15 @@ def logout_view(request):
     return redirect('openDataChallange2020Imperium.viewer:index')
 
 
-def index(request):
+def index_view(request):
     return render(request, 'index.html')
 
-def dashboard(request):
+
+@login_required(login_url='openDataChallange2020Imperium.viewer:login')
+def dashboard_view(request):
     return render(request, 'account/dashboard.html')
+
+
+@login_required(login_url='openDataChallange2020Imperium.viewer:login')
+def settings_view(request):
+    return render(request, 'account/settings.html')
