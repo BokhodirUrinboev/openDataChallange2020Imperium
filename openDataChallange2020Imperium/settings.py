@@ -80,7 +80,7 @@ ROOT_URLCONF = 'openDataChallange2020Imperium.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [PROJECT_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -159,10 +159,10 @@ LOCALE_PATHS = [
 MEDIA_URL = '/images/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, 'static')
+    os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'static/images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
