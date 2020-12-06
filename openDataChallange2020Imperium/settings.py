@@ -184,6 +184,10 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timezone.timedelta(days=5),
 }
 
+OPEN_DATA_URL = os.environ.get('OPEN_DATA_URL'),
+OPEN_DATA_ACESS_KEY = os.environ.get('OPEN_DATA_ACESS_KEY'),
+
+
 # cors settings
 
 # CORS_ALLOW_HEADERS = default_headers + (
