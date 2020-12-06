@@ -43,8 +43,10 @@
 
 <body>
     {% if request.path == '/login/' or request.path == '/signup/' %}
-    {% else  %}
+    {% elif  request.path == '' %}
         {% include 'nav_bar.html' %}
+    {% else  %}
+        {% include 'account/top_nav_bar.html' %}
     {% endif %}
     {% block content %}
 
@@ -52,7 +54,12 @@
     {% endblock %}
 
 
-
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright ©
+                NextStep 2020</span>
+        </div>
+    </footer>
 
 
     <script src="{% static "js/main.js" %}"></script>

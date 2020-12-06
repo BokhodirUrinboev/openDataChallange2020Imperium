@@ -43,3 +43,6 @@ def logout_view(request):
 
 def index(request):
     return render(request, 'index.html')
+
+def dashboard(request):
+    return render(request, 'account/dashboard.html')
