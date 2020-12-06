@@ -19,6 +19,8 @@ a {
 
 button, input {
   outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 .navbar {
@@ -124,5 +126,15 @@ button, input {
   border-radius: 5px;
   -webkit-box-shadow: 0 4px 10px #777777;
           box-shadow: 0 4px 10px #777777;
+}
+
+.dropdown .btn {
+  font-weight: 500;
+}
+
+.dropdown-menu {
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
 }
 /*# sourceMappingURL=style.css.map */
