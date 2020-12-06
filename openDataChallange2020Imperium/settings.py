@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
-from corsheaders.defaults import default_headers
+# from corsheaders.defaults import default_headers
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
