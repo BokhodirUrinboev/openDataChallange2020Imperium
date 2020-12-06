@@ -1,237 +1,263 @@
-{% extends 'main.html'%}
+{% extends 'main.html' %}
 {% load static %}
 {% block content %}
-<div class="container-fluid page-body-wrapper">
-    <!-- partial:partials/_sidebar.html -->
-    {% include 'account/sidebar.html' %}
-    <!-- partial -->
-    <div class="main-panel">
-        <div class="content-wrapper">
-
-            <form action="">
-                <div class="row">
-                    <div class="col-md-12 grid-margin">
-                        <h4>Statistika chiqarish uchun ma'lumotlar formasini to'ldirish</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-3">
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect2">Hududni tanlash</label>
-                            <select multiple class="form-control" id="exampleFormControlSelect2">
-                                {% for region in regions %}
-                                <option value="{{ region.id }}">{{ region.G1 }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <label>Internetdan foydalanish imkoniyati</label>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="internetUsingRadios" value="">
-                                Ha
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="internetUsingRadios" value="">
-                                Yo'q
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="internetUsingRadios" value=""
-                                    checked>
-                                Ixtiyoriy
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <label>Telefondan foydalanish imkoniyati</label>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="mobileRadios" value="">
-                                Ha
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="mobileRadios" value="">
-                                Yo'q
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="mobileRadios" value="" checked>
-                                Ixtiyoriy
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                    <label>Ma'lumoti</label>
-                        {% for ed in education %}
-{#                            {{ ed }}#}
-                            {% if ed.id > '3'  %}
-
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" value="{{ ed.id }}" class="form-check-input">
-                                        {{ ed.G1 }}
-                                    </label>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-3">
-                        <label>Internetga ulana olish imkoniyati</label>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="internetRadios" value="">
-                                Ha
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="internetRadios" value="">
-                                Yo'q
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="internetRadios" value="" checked>
-                                Ixtiyoriy
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <label>Shaxsiy uy joyga ega bo'lishi</label>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="homeRadios" value="">
-                                Ha
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="homeRadios" value="">
-                                Yo'q
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="homeRadios" value="" checked>
-                                Ixtiyoriy
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <label>Uy xo'jalik 16 yoshdan katta bolalar tarkibi soni</label>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="childRadios" value="">
-                                Yo'q
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="childRadios" value="">
-                                1 farzand
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="childRadios" value="" checked>
-                                2 farzand
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="childRadios" value="" checked>
-                                3 farzand
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="childRadios" value="" checked>
-                                4 farzand va undan ko'p
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <label>Uy xo'jalik a'zolari tarkibi soni</label>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="housholdMembersRadios" value="">
-                                1 kishi
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="housholdMembersRadios" value="">
-                                2 kishi
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="housholdMembersRadios" value=""
-                                    checked>
-                                3 kishi
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="housholdMembersRadios" value="">
-                                4 kishi
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="housholdMembersRadios" value=""
-                                    checked>
-                                5 kishi va undan ortiq
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row mt-3">
-
-                    <div class="col-3">
-                        <label>Kompyuterdan foydalanish imkoniyati</label>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="compRadios" value="">
-                                Ha
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="compRadios" value="">
-                                Yo'q
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="compRadios" value="" checked>
-                                Ixtiyoriy
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-5 justify-content-center"><button class="btn btn-primary">Ko'rish</button></div>
-            </form>
-        </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        {% include 'account/sidebar.html' %}
         <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <form action="" id="market_size">
+                    <div class="row">
+                        <div class="col-md-12 grid-margin">
+                            <h4>Statistika chiqarish uchun ma'lumotlar formasini to'ldirish</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect2">Hududni tanlash</label>
+                                <select multiple class="form-control" id="regions" name="regions[]">
+                                    {% for region in regions %}
+                                        {% if region.id > '1' %}
+                                            <option value="{{ region.id }}">{{ region.G1 }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <label>Internetdan foydalanish imkoniyati</label>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="internetUsingRadios" value="0">
+                                    Ha
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="internetUsingRadios" value="1">
+                                    Yo'q
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="internetUsingRadios" value="2"
+                                           checked>
+                                    Ixtiyoriy
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <label>Telefondan foydalanish imkoniyati</label>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="mobileRadios" value="0">
+                                    Ha
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="mobileRadios" value="1">
+                                    Yo'q
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="mobileRadios" value="2" checked>
+                                    Ixtiyoriy
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <label>Ma'lumoti</label>
+                            {% for ed in education %}
+                                {#                            {{ ed }}#}
+                                {% if ed.id > '3' %}
+
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" value="{{ ed.id }}" class="form-check-input">
+                                            {{ ed.G1 }}
+                                        </label>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-3">
+                            <label>Internetga ulana olish imkoniyati</label>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="internetRadios" value="0">
+                                    Ha
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="internetRadios" value="1">
+                                    Yo'q
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="internetRadios" value="2" checked>
+                                    Ixtiyoriy
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <label>Shaxsiy uy joyga ega bo'lishi</label>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="homeRadios" value="0">
+                                    Ha
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="homeRadios" value="1">
+                                    Yo'q
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="homeRadios" value="2" checked>
+                                    Ixtiyoriy
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <label>Uy xo'jalik 16 yoshdan katta bolalar tarkibi soni</label>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="childRadios" value="">
+                                    Yo'q
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="childRadios" value="">
+                                    1 farzand
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="childRadios" value="" checked>
+                                    2 farzand
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="childRadios" value="" checked>
+                                    3 farzand
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="childRadios" value="" checked>
+                                    4 farzand va undan ko'p
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <label>Uy xo'jalik a'zolari tarkibi soni</label>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="housholdMembersRadios" value="">
+                                    1 kishi
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="housholdMembersRadios" value="">
+                                    2 kishi
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="housholdMembersRadios" value=""
+                                           checked>
+                                    3 kishi
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="housholdMembersRadios" value="">
+                                    4 kishi
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="housholdMembersRadios" value=""
+                                           checked>
+                                    5 kishi va undan ortiq
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-3">
+
+                        <div class="col-3">
+                            <label>Kompyuterdan foydalanish imkoniyati</label>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="compRadios" value="0">
+                                    Ha
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="compRadios" value="1">
+                                    Yo'q
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="compRadios" value="2" checked>
+                                    Ixtiyoriy
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5 justify-content-center">
+                        <button type="button" id="submit" class="btn btn-primary">Ko'rish</button>
+                    </div>
+                </form>
+            </div>
+
+            <script>
+                $(document).ready(function () {
+                    var unselectedValues;
+                    var unselectedValues1;
+                    $('#submit').on('click', function () {
+                        unselectedValues1 = $('#regions').change(function () {
+                            return unselectedValues = $(this).find('option:selected').map(function () {
+                                return this.value;
+                            }).get();
+                        });
+                        console.log(unselectedValues1);
+                    })
+
+                    var internetUsing = $('input[name=internetUsingRadios]').on('change', function () {
+                        return $('input[name=internetUsingRadios]:checked').val();
+                    }).get();
+
+                    console.log(internetUsing)
+
+                })
+            </script>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
     </div>
-    <!-- main-panel ends -->
-</div>
 {% endblock %}
