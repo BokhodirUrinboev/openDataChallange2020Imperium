@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   -webkit-box-sizing: border-box;
@@ -47,7 +48,7 @@ button, input {
 .my_header {
   height: 100vh;
   width: 100%;
-  background: url(../data/header_back.jpg) no-repeat center;
+  background: url(/static/images/header_back.jpg) no-repeat center;
   background-size: cover;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -68,7 +69,7 @@ button, input {
 }
 
 .about::before {
-  content: url("vector.png");
+  content: url("/static/images/vector.png");
   position: absolute;
   bottom: -6px;
   left: 0;
@@ -111,8 +112,8 @@ button, input {
 
 .contacts {
   padding: 50px 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.3))), url(./3860709.jpg) no-repeat 100% 55%;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url(./3860709.jpg) no-repeat 100% 55%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.3))), url(/static/images/3860709.jpg) no-repeat 100% 55%;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url(/static/images/3860709.jpg) no-repeat 100% 55%;
   height: 90vh;
   background-size: cover;
 }
@@ -137,4 +138,3 @@ button, input {
   min-width: -moz-max-content;
   min-width: max-content;
 }
-/*# sourceMappingURL=style.css.map */

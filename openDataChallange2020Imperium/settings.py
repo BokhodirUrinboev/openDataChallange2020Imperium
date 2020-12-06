@@ -51,7 +51,7 @@ ALLOWED_HOSTS = get_list(os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1"))
 INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
-    'corsheaders',
+    # 'corsheaders',
 
     'openDataChallange2020Imperium.viewer',
 
@@ -65,7 +65,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -186,13 +186,13 @@ SIMPLE_JWT = {
 
 # cors settings
 
-CORS_ALLOW_HEADERS = default_headers + (
-    'cache-control',
-)
-
-CORS_ORIGIN_WHITELIST = (
-    os.environ.get('UI_DOMAIN'),
-    os.environ.get('UI_LOCAL_TESTER', ''),
-)
-
-CORS_ORIGIN_ALLOW_ALL = get_bool_from_env('CORS_ORIGIN_ALLOW_ALL', False)
+# CORS_ALLOW_HEADERS = default_headers + (
+#     'cache-control',
+# )
+#
+# CORS_ORIGIN_WHITELIST = (
+#     os.environ.get('UI_DOMAIN'),
+#     os.environ.get('UI_LOCAL_TESTER', ''),
+# )
+#
+# CORS_ORIGIN_ALLOW_ALL = get_bool_from_env('CORS_ORIGIN_ALLOW_ALL', False)
