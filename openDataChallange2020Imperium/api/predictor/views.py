@@ -93,7 +93,6 @@ class TAMSAMSOMAPI(APIView):
                 if 'no_of_children' in serializer.data.keys():
                     som_population = som_population*int(data[serializer.data['no_children']+4])['G4']
 
-
             data = {
                 "TAM": tam_population,
                 "SAM": sam_population,
