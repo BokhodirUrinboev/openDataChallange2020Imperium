@@ -14,6 +14,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Change security</h4>
                                     <form class="forms-sample">
+
                                         <div class="form-group">
                                             <label for="exampleInputUsername1">Username</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1"
@@ -36,6 +37,7 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
@@ -43,21 +45,22 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Personal info</h4>
-                                    <form class="forms-sample">
+                                    <form class="forms-sample" action="{% url 'openDataChallange2020Imperium.viewer:settings' %}">
+                                        {% csrf_token %}
                                         <div class="form-group row">
                                             <label for="exampleInputUsername2"
                                                 class="col-sm-3 col-form-label">Name</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="exampleInputUsername2"
-                                                    placeholder="Name">
+                                                    placeholder="Name" value="{{ form.name }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputEmail2"
                                                 class="col-sm-3 col-form-label">Surname</label>
                                             <div class="col-sm-9">
-                                                <input type="email" class="form-control" id="exampleInputEmail2"
-                                                    placeholder="Surname">
+                                                <input type="text" class="form-control" id="exampleInputEmail2"
+                                                    placeholder="Surname" value="{{ form.surname }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -65,7 +68,7 @@
                                                 class="col-sm-3 col-form-label">Mobile</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="exampleInputMobile"
-                                                    placeholder="Mobile number">
+                                                    placeholder="Mobile number" value="{{ form.phone}}">
                                             </div>
                                         </div>
 
@@ -84,7 +87,7 @@
 
                                         <div class="form-group">
                                             <label for="exampleTextarea1">Address</label>
-                                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                                            <textarea class="form-control" id="exampleTextarea1" rows="4" value="{{ form.address}}"></textarea>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
