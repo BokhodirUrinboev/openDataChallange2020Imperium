@@ -18,12 +18,10 @@
                     <div class="col-3">
                         <div class="form-group">
                             <label for="exampleFormControlSelect2">Hududni tanlash</label>
-                            <select class="form-control" id="exampleFormControlSelect2">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select multiple class="form-control" id="exampleFormControlSelect2">
+                                {% for region in regions %}
+                                <option value="{{ region.id }}">{{ region.G1 }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
@@ -71,25 +69,20 @@
                         </div>
                     </div>
                     <div class="col-3">
-                        <label>Ma'lumoti</label>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                Oliy
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                O'rta maxsus
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                O'rta
-                            </label>
-                        </div>
+                    <label>Ma'lumoti</label>
+                        {% for ed in education %}
+{#                            {{ ed }}#}
+                            {% if ed.id > '3'  %}
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" value="{{ ed.id }}" class="form-check-input">
+                                        {{ ed.G1 }}
+                                    </label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
                     </div>
                 </div>
                 <div class="row mt-3">
