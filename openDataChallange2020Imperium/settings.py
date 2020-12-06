@@ -9,10 +9,28 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+import ast
 import os
-import dj_database_url
 from pathlib import Path
+
+import dj_database_url
+from corsheaders.defaults import default_headers
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
+
+def get_list(text):
+    return [item.strip() for item in text.split(",")]
+
+
+def get_bool_from_env(name, default_value):
+    if name in os.environ:
+        value = os.environ[name]
+        try:
+            return ast.literal_eval(value)
+        except ValueError as e:
+            raise ValueError("{} is an invalid value for {}".format(value, name)) from e
+    return default_value
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,16 +45,17 @@ SECRET_KEY = 'q3dn!043hvb=+q=q32^09&8&09r61#uzxegell(v#1^7+1x%66'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = get_list(os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1"))
 # Application definition
 
 INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'corsheaders',
-    'openDataChallange2020Imperium.viewer'
-    
+
+    'openDataChallange2020Imperium',
+    'openDataChallange2020Imperium.viewer',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,12 +66,15 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'reversion.middleware.RevisionMiddleware',
 ]
 
 ROOT_URLCONF = 'openDataChallange2020Imperium.urls'
@@ -87,7 +109,7 @@ DATABASES = {
 }
 # DATABASES = {
 #     'default': dj_database_url.config(
-#         default="postgres://pharmacy_cloud:pharmacy_cloud@db:5432/pharmacy_cloud",
+#         default="postgres://open_data:open_data@db:5432/open_data",
 #         engine='django_tenants.postgresql_backend', conn_max_age=600
 #     ),
 # }
@@ -143,3 +165,36 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(PROJECT_DIR, 'static/images')
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        "rest_framework.permissions.DjangoModelPermissions",
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'openDataChallange2020Imperium.api.predictor.pagination.PageNumberPagination',
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    )
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timezone.timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timezone.timedelta(days=5),
+}
+
+# cors settings
+
+CORS_ALLOW_HEADERS = default_headers + (
+    'cache-control',
+)
+
+CORS_ORIGIN_WHITELIST = (
+    os.environ.get('UI_DOMAIN'),
+    os.environ.get('UI_LOCAL_TESTER', ''),
+)
+
+CORS_ORIGIN_ALLOW_ALL = get_bool_from_env('CORS_ORIGIN_ALLOW_ALL', False)
