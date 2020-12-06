@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
 
-    'openDataChallange2020Imperium',
     'openDataChallange2020Imperium.viewer',
 
     'django.contrib.admin',
@@ -74,7 +73,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'reversion.middleware.RevisionMiddleware',
 ]
 
 ROOT_URLCONF = 'openDataChallange2020Imperium.urls'
